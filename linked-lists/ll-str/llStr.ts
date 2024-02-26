@@ -49,6 +49,7 @@ class LLStr {
     if (this.tail !== null) this.tail.next = newNode;
 
     this.tail = newNode;
+    this.length++;
   }
 
   /** unshift(val): add new value to start of list. */
@@ -61,6 +62,7 @@ class LLStr {
     if (this.head === null) this.tail = newNode;
 
     this.head = newNode;
+    this.length = length++;
   }
 
   /** pop(): return & remove last item.
@@ -79,6 +81,7 @@ class LLStr {
         this.tail = current;
       }
       current = current.next!;
+      this.length--;
     }
 
     return "x";
