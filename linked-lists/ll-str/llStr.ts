@@ -42,6 +42,7 @@ class LLStr {
 
   push(val: string): void {
     const newNode = new NodeStr(val);
+    debugger;
 
     if (this.head === null) this.head = newNode;
 
