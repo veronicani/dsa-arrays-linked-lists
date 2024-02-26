@@ -1,6 +1,7 @@
 /** IndexError: raised when index not found. */
 
 class IndexError extends Error {
+  //TODO: implement idx err msg?
 }
 
 /**
@@ -40,11 +41,24 @@ class LLStr {
   /** push(val): add new value to end of list. */
 
   push(val: string): void {
+    const newNode = new NodeStr(val);
+    
+    if (this.head === null) this.head = newNode;
+    
+    if (this.tail !== null) this.tail.next = newNode;
+    
+    this.tail = newNode;
   }
 
   /** unshift(val): add new value to start of list. */
 
   unshift(val: string): void {
+    const newNode = new NodeStr(val);
+    
+    newNode.next = this.head
+    if (this.head === null) this.tail = newNode;
+    
+    this.tail = newNode;
   }
 
   /** pop(): return & remove last item.
