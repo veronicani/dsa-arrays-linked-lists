@@ -70,8 +70,13 @@ class LLStr {
    * Throws IndexError on empty list.
    **/
 
-  // [a, b] head: a, tail: b, 
-  // pop --> b
+  //get removed value
+  // get new tail => getting new tail will automatically remove the last value
+  // setting the second to last value as tail and set next to null
+  // return the removed value
+
+  // [a] head: a, tail: a; a.next = null;
+  // pop --> a
   // [a] head: a, tail: a
   //pop --> a (but instead, undefined)
 
@@ -79,20 +84,38 @@ class LLStr {
   pop(): string {
     if (this.head === null) throw new IndexError;
 
-    let current = this.head;
-    let removed: NodeStr; 
-    
-    while (current !== null) {
-      if ( current.next === this.tail) {
-        current.next = null;
-        removed = this.tail!;
-        this.tail = current;
-        this.length--;
-        console.log('removed.val=', removed.val);
-        return removed.val;
-      }
+    let current: NodeStr = this.head;
+    let removed = this.tail; // this will be reutrn value // find return value;
+    debugger;
+
+    while (current.next! !== this.tail) {  // find new tail
       current = current.next!;
     }
+
+    current.next = null;
+    this.tail = current;
+    this.length--;
+
+    return removed!.val;
+
+
+
+    // while (current !== null) {
+    //   if (this.head === this.tail) {
+    //     removed = this.head!;
+    //     this.head = null;
+    //     this.tail = null;
+    //     this.length--;
+    //   } else if ( current.next === this.tail) {
+    //     removed = this.tail!;
+    //     current.next = null;
+    //     this.tail = current;
+    //     this.length--;
+    //     console.log('removed.val=', removed.val);
+    //   }
+    //   current = current.next!;
+    // }
+    // return removed!.val;
   }
 
   /** shift(): return & remove first item.
