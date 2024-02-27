@@ -62,7 +62,7 @@ class LLStr {
     if (this.head === null) this.tail = newNode;
 
     this.head = newNode;
-    this.length = length++;
+    this.length++;
   }
 
   /** pop(): return & remove last item.
@@ -70,21 +70,29 @@ class LLStr {
    * Throws IndexError on empty list.
    **/
 
+  // [a, b] head: a, tail: b, 
+  // pop --> b
+  // [a] head: a, tail: a
+  //pop --> a (but instead, undefined)
+
+
   pop(): string {
     if (this.head === null) throw new IndexError;
 
     let current = this.head;
-
+    let removed: NodeStr; 
+    
     while (current !== null) {
-      if ( current.next = this.tail) {
+      if ( current.next === this.tail) {
         current.next = null;
+        removed = this.tail!;
         this.tail = current;
+        this.length--;
+        console.log('removed.val=', removed.val);
+        return removed.val;
       }
       current = current.next!;
-      this.length--;
     }
-
-    return "x";
   }
 
   /** shift(): return & remove first item.
