@@ -70,52 +70,26 @@ class LLStr {
    * Throws IndexError on empty list.
    **/
 
-  //get removed value
-  // get new tail => getting new tail will automatically remove the last value
-  // setting the second to last value as tail and set next to null
-  // return the removed value
-
-  // [a] head: a, tail: a; a.next = null;
-  // pop --> a
-  // [a] head: a, tail: a
-  //pop --> a (but instead, undefined)
-
-
   pop(): string {
-    if (this.head === null) throw new IndexError;
+    if (this.head === null || this.tail === null) throw new IndexError;
 
     let current: NodeStr = this.head;
-    let removed = this.tail; // this will be reutrn value // find return value;
-    debugger;
+    let removed = this.tail;
 
-    while (current.next! !== this.tail) {  // find new tail
-      current = current.next!;
+    while (current.next !== this.tail && current.next !== null) {
+      current = current.next;
     }
 
     current.next = null;
     this.tail = current;
     this.length--;
 
-    return removed!.val;
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
 
-
-
-    // while (current !== null) {
-    //   if (this.head === this.tail) {
-    //     removed = this.head!;
-    //     this.head = null;
-    //     this.tail = null;
-    //     this.length--;
-    //   } else if ( current.next === this.tail) {
-    //     removed = this.tail!;
-    //     current.next = null;
-    //     this.tail = current;
-    //     this.length--;
-    //     console.log('removed.val=', removed.val);
-    //   }
-    //   current = current.next!;
-    // }
-    // return removed!.val;
+    return removed.val;
   }
 
   /** shift(): return & remove first item.
@@ -124,7 +98,19 @@ class LLStr {
    **/
 
   shift(): string {
-    return "x";
+    if (this.head === null || this.tail === null) throw new IndexError;
+
+    let removed = this.head;
+
+    this.head = this.head.next;
+    this.length--;
+
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+
+    return removed.val;
   }
 
   /** getAt(idx): get val at idx.
@@ -132,7 +118,19 @@ class LLStr {
    * Throws IndexError if not found.
    **/
 
+  //[a, b, c, d] head: a, tail: b, len: 2
+  //getAt(0) -> a
+  //0 = head + 0
+  //1 = head.next -> b
+  //2 = head.next.next -> c
+  //curr = null
+
   getAt(idx: number): string {
+    let current = this.head;
+    if (idx >= this.length) throw new IndexError();
+    for (let i = 0; i <= idx; i++) {
+      //TODO: seth!
+    }
     return "x";
   }
 
