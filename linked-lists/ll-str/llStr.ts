@@ -126,12 +126,17 @@ class LLStr {
   //curr = null
 
   getAt(idx: number): string {
-    let current = this.head;
-    if (idx >= this.length) throw new IndexError();
-    for (let i = 0; i <= idx; i++) {
-      //TODO: seth!
+
+    if (this.head === null || this.tail === null) throw new IndexError();
+    if (idx >= this.length || idx < 0) throw new IndexError();
+
+    let current: NodeStr = this.head;
+
+    for (let i = 0; i < idx; i++) {
+      current = current.next!;
     }
-    return "x";
+
+    return current.val;
   }
 
   /** setAt(idx, val): set val at idx to val.
